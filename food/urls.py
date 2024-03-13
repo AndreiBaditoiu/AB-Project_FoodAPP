@@ -7,4 +7,3 @@ urlpatterns = [
     path('order/', views.order, name='order'),
     path('cart/', views.cart, name='cart'),
 ]
-
