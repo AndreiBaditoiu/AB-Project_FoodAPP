@@ -21,5 +21,5 @@ from food import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('food/', include('food.urls')),
-    # path('', views.index, name='index'),
+    path('', views.index, name='index'),
 ]
