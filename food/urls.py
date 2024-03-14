@@ -1,6 +1,8 @@
 from . import views
 from django.urls import path
 
+# namespacing
+app_name = 'food'
 urlpatterns = [
     # /food/
     path('', views.index, name='index'),
