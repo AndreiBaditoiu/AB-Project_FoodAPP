@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Item
-from django.urls import reverse
+
 from django.template import loader
 
 
