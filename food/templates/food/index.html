@@ -14,18 +14,37 @@
 <body>
 {% block body %}
     {% for item in item_list %}
+        <div class="row">
+            <div class="col-md-3 offset-md-2">
+                <img class="card" height="150px" src="{{ item.item_image }}" alt=""/>
 
-        <ul>
-            <li>
+            </div>
+            <div class="col-md-4">
 
-                <a href="{% url 'food:detail' item.id %}">{{ item.id }} -- {{ item.item_name }}</a>
-            </li>
-        </ul>
+            </div>
+        <div class="col-md-2">
+
+        </div>
+        </div>
+
 
     {% endfor %}
 
     {#^ Sintaxa Django-Django Template Language ^#}
 {% endblock %}
+
+
+
+
+this is the old code
+
+
+<ul>
+    <li>
+
+        <a href="{% url 'food:detail' item.id %}">{{ item.id }} -- {{ item.item_name }}</a>
+    </li>
+</ul>
 
 
 </body>
