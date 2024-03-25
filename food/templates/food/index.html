@@ -1,6 +1,7 @@
 {% extends 'food/base.html' %}
 
 
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -16,11 +17,14 @@
     {% for item in item_list %}
         <div class="row">
             <div class="col-md-3 offset-md-2">
-                <img class="card" height="150px" src="{{ item.item_image }}" alt=""/>
+                <img class="card" height="50px" width="auto" src="{{ item.item_image }}?v=123456" alt=""/>
+
 
             </div>
             <div class="col-md-4">
-
+                <h3>{{ item.item_name }}</h3>
+                <h5>{{ item.item_desc }}</h5>
+                <h6>${{ item.item_price }}</h6>
             </div>
         <div class="col-md-2">
 
@@ -36,15 +40,15 @@
 
 
 
-this is the old code
+{#this is the old code#}
 
 
-<ul>
-    <li>
-
-        <a href="{% url 'food:detail' item.id %}">{{ item.id }} -- {{ item.item_name }}</a>
-    </li>
-</ul>
+{#<ul>#}
+{#    <li>#}
+{##}
+{#        <a href="{% url 'food:detail' item.id %}">{{ item.id }} -- {{ item.item_name }}</a>#}
+{#    </li>#}
+{#</ul>#}
 
 
 </body>

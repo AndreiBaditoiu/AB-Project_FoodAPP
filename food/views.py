@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Item
+from django.views.decorators.cache import never_cache
 
 from django.template import loader
 
@@ -33,10 +34,12 @@ def item(request):
 
 # item var below not in connection with above function!!
 
-
+@never_cache
 def detail(request, item_id):
     item = Item.objects.get(pk=item_id)
     context = {
         'item': item,
+
     }
+    # print(item)
     return render(request, 'food/detail.html', context)
