@@ -2,6 +2,7 @@
 
 
 
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -17,7 +18,8 @@
     {% for item in item_list %}
         <div class="row">
             <div class="col-md-3 offset-md-2">
-                <img class="card" height="50px" width="auto" src="{{ item.item_image }}?v=123456" alt=""/>
+                    <img class="card" src="{{ item.item_image }}" alt="" style="width: 150px; height: auto">
+{# Adugat 'style' in linia de mai sus pentru a putea re dimensiona imaginea#}
 
 
             </div>

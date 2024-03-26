@@ -34,6 +34,7 @@ def item(request):
 
 # item var below not in connection with above function!!
 
+
 @never_cache
 def detail(request, item_id):
     item = Item.objects.get(pk=item_id)
