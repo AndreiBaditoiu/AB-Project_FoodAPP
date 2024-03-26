@@ -1,3 +1,16 @@
 body {
-    background-color: lightyellow;
+  background-color: lightyellow;
 }
+/*}*/
+
+/*:root {*/
+/*  --height-small: 150px;*/
+/*  --height-medium: 300px;*/
+/*  --height-large: 450px;*/
+/*}*/
+
+/*.img-custom {*/
+/*  height: var(--height-medium); !* Valoare implicită *!*/
+/*  width: auto;*/
+/*}*/
+

@@ -1,57 +1,23 @@
 {% extends 'food/base.html' %}
 
-
-
-
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-
-</head>
-<body>
 {% block body %}
     {% for item in item_list %}
         <div class="row">
             <div class="col-md-3 offset-md-2">
-                    <img class="card" src="{{ item.item_image }}" alt="" style="width: 150px; height: auto">
-{# Adugat 'style' in linia de mai sus pentru a putea re dimensiona imaginea#}
-
-
+                <!-- Imagine-->
+                <img class="card-img-top" src="{{ item.item_image }}" alt="" style="width: 150px; height: auto">
             </div>
             <div class="col-md-4">
                 <h3>{{ item.item_name }}</h3>
                 <h5>{{ item.item_desc }}</h5>
                 <h6>${{ item.item_price }}</h6>
+                <!-- nume, descriere,pret -->
+
             </div>
-        <div class="col-md-2">
-            <a href="{% url 'food:detail' item.id %}" class="btn btn-success">Details</a>
+            <div class="col-md-2">
+                <a href="{% url 'food:detail' item.id %}" class="btn btn-success">Details</a>
+                <!-- buton-->
+            </div>
         </div>
-        </div>
-
-
     {% endfor %}
-
-    {#^ Sintaxa Django-Django Template Language ^#}
 {% endblock %}
-
-
-
-
-{#this is the old code#}
-
-
-<ul>
-    <li>
-
-        <a href="">{{ item.id }} -- {{ item.item_name }}</a>
-    </li>
-</ul>
-
-
-</body>
-</html>
