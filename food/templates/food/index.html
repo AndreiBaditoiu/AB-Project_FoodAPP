@@ -1,23 +1,30 @@
 {% extends 'food/base.html' %}
 
-{% block body %}
-    {% for item in item_list %}
-        <div class="row">
-            <div class="col-md-3 offset-md-2">
-                <!-- Imagine-->
-                <img class="card-img-top" src="{{ item.item_image }}" alt="" style="width: 150px; height: auto">
-            </div>
-            <div class="col-md-4">
-                <h3>{{ item.item_name }}</h3>
-                <h5>{{ item.item_desc }}</h5>
-                <h6>${{ item.item_price }}</h6>
-                <!-- nume, descriere,pret -->
+{% block content %}
+    <div class="content">
+        <!-- Conținutul paginii aici -->
 
+
+        {% for item in item_list %}
+            <div class="row">
+                <div class="col-md-3 offset-md-2">
+                    <!-- Imagine-->
+                    <img class="card-img-top" src="{{ item.item_image }}" alt="" style="width: 150px; height: auto">
+                </div>
+                <div class="col-md-4">
+                    <h3>{{ item.item_name }}</h3>
+                    <h5>{{ item.item_desc }}</h5>
+                    <h6>${{ item.item_price }}</h6>
+                    <!-- nume, descriere,pret -->
+
+                </div>
+                <div class="col-md-2">
+                    <a href="{% url 'food:detail' item.id %}" class="btn btn-success">Details</a>
+                    <!-- buton-->
+                </div>
             </div>
-            <div class="col-md-2">
-                <a href="{% url 'food:detail' item.id %}" class="btn btn-success">Details</a>
-                <!-- buton-->
             </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
+
 {% endblock %}
+

@@ -19,7 +19,7 @@
     <a href="#" class="navbar-brand">FoodApp</a>
     <div class="navbar">
         <a class="navbar" href="#">
-            <img src="{% static 'images/Logo.jpg' %}" width="60" alt="Logo">
+            <img src="{% static 'images/Logo.jpg' %}" width="30" alt="Logo">
         </a>
         <a class="nav-item nav-link text-light me-3" href="{% url 'food:create_item' %}">Add Item </a>
         <a class="nav-item nav-link text-light me-3" href="#">Delete Item</a>
@@ -27,7 +27,7 @@
     </div>
 
 </nav>
-{% block body %}
+{% block content %}
 {% endblock %}
 </body>
 </html>
