@@ -1,0 +1,28 @@
+<!-- item_form.html -->
+{#{% extends 'food/base.html' %}#}
+
+{% block content %}
+    <div class="container">
+        <h2>Add / Edit Item</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="col">
+                    {{ form.item_name }}
+                </div>
+                <div class="col">
+                    {{ form.item_desc }}
+                </div>
+                <div class="col">
+                    {{ form.item_price }}
+                </div>
+                <div class="col">
+                    {{ form.item_image }}
+                </div>
+
+                <!-- Repetă pentru fiecare câmp din formular -->
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+{% endblock %}

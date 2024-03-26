@@ -21,7 +21,7 @@
         <a class="navbar" href="#">
             <img src="{% static 'images/Logo.jpg' %}" width="60" alt="Logo">
         </a>
-        <a class="nav-item nav-link text-light me-3" href="#">Add Item </a>
+        <a class="nav-item nav-link text-light me-3" href="{% url 'food:create_item' %}">Add Item </a>
         <a class="nav-item nav-link text-light me-3" href="#">Delete Item</a>
         <a class="nav-item nav-link text-light" href="#">View Item</a>
     </div>
