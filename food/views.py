@@ -5,9 +5,6 @@ from .forms import ItemForm
 from .models import Item
 from django.views.decorators.cache import never_cache
 
-from django.template import loader
-
-
 # Create your views here.
 
 
