@@ -15,7 +15,7 @@
     <title>FoodApp</title>
 </head>
 <body>
-<nav class="navbar navbar-dark bg-dark">
+<nav class="navbar navbar-dark bg-dark mb-2">
     <a href="#" class="navbar-brand">FoodApp</a>
     <div class="navbar">
         <a class="navbar" href="#">
@@ -27,6 +27,14 @@
     </div>
 
 </nav>
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}" role="alert">
+            {{ message }}
+        </div>
+
+    {% endfor %}
+{% endif %}
 {% block content %}
 {% endblock %}
 </body>

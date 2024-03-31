@@ -13,6 +13,6 @@ urlpatterns = [
     path('add/', views.create_item, name='create_item'),
     # edit items page
     path('update/<int:id>/', views.update_item, name='update_item'),
-    #detelet item page
+    # delete item page
     path('delete/<int:id>/', views.delete_item, name='delete_item'),
 ]
