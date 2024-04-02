@@ -1,18 +1,19 @@
 from . import views
 from django.urls import path
 
+
 # namespacing
 app_name = 'food'
 urlpatterns = [
     # /food/
-    path('', views.index, name='index'),
+    path('', views.IndexClassView.as_view(), name='index'),
     # /food/1 (id 1)--exemplu
-    path('<int:item_id>/', views.detail, name='detail'),
+    path('<int:pk>/', views.FoodDetail.as_view(), name='detail'),
     path('item/', views.item, name='item'),
     # add items page
-    path('add/', views.create_item, name='create_item'),
+    path('add/', views.CreateItemView.as_view(), name='create_item'),
     # edit items page
-    path('update/<int:id>/', views.update_item, name='update_item'),
+    path('update/<int:pk>/', views.UpdateItemView.as_view(), name='update_item'),
     # delete item page
-    path('delete/<int:id>/', views.delete_item, name='delete_item'),
+    path('delete/<int:pk>/', views.DeleteItemView.as_view(), name='delete_item'),
 ]

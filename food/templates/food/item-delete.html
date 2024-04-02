@@ -1,5 +1,9 @@
+{% extends 'food/base.html' %}
+{% block content %}
 <form method="POST">
     {% csrf_token %}
-    <h2>Are you sure you want to delete {{ item.item_name }}</h2>
-    <button type="submit">Confirm</button>
+    <h2>Are you sure you want to delete "{{ object.item_name }}"?</h2>
+    <button type="submit" class="btn btn-danger">Confirm</button>
+    <a href="{% url 'food:index' %}" class="btn btn-secondary">Cancel</a>
 </form>
+{% endblock %}
