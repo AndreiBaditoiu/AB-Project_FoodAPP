@@ -53,7 +53,7 @@ def item(request):
 #     }
 #     return render(request, 'food/detail.html', context)
 
-@never_cache
+
 class FoodDetail(DetailView):
     model = Item
     template_name = 'food/detail.html'
