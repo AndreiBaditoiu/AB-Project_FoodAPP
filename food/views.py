@@ -4,7 +4,6 @@ from django.urls import reverse_lazy
 
 from .forms import ItemForm
 from .models import Item
-from django.views.decorators.cache import never_cache
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 
@@ -71,9 +70,13 @@ class FoodDetail(DetailView):
 
 class CreateItemView(CreateView):
     model = Item
-    form_class = ItemForm
+    fields = ['item_name', 'item_desc', 'item_price', 'item_image']
     template_name = 'food/item-form.html'
-    success_url = reverse_lazy('food:index')
+
+    def form_valid(self, form):
+        form.instance.user_name= self.request.user
+
+        return super().form_valid(form)
 
 
 # def update_item(request, id):
