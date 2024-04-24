@@ -7,6 +7,7 @@ from .models import Item
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 
+
 # Create your views here.
 
 
@@ -30,10 +31,23 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 #     return render(request, 'food/index.html', context)
 
 
+# search option below
+def get_queryset(self):
+    query = self.request.GET.get("item_name")
+    if query:
+        return Item.objects.filter(
+            item_name__icontains=query)
+    else:
+        return Item.objects.all()
+
+
+# paginator below
 class IndexClassView(ListView):
     model = Item
     template_name = 'food/index.html'
     context_object_name = 'item_list'
+    paginate_by = 5
+
 
 
 def item(request):
@@ -74,7 +88,7 @@ class CreateItemView(CreateView):
     template_name = 'food/item-form.html'
 
     def form_valid(self, form):
-        form.instance.user_name= self.request.user
+        form.instance.user_name = self.request.user
 
         return super().form_valid(form)
 
@@ -109,4 +123,3 @@ class DeleteItemView(DeleteView):
     model = Item
     template_name = 'food/item-delete.html'
     success_url = reverse_lazy('food:index')
-

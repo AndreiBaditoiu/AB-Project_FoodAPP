@@ -2,8 +2,26 @@
 
 {% block content %}
     <div class="content">
-        <!-- Conținutul paginii aici -->
 
+        <div class="row">
+            <div class="col-md-12">
+                <form class="card card-sm">
+                    <div class="card-body row no-gutters align-items-center">
+                        <label for="item_name_search" class="col-form-label"></label>
+                        <div class="col">
+
+                            <input type="search" id="item_name_search" name="item_name" placeholder="Search"
+                                   class="form-control form-control-borderless">
+
+                        </div>
+                        <div class="col-auto">
+                            <button class="btn btn-success" type="submit">Search</button>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
 
         {% for item in item_list %}
             <div class="row">
@@ -15,7 +33,7 @@
                     <h3>{{ item.item_name }}</h3>
                     <h5>{{ item.item_desc }}</h5>
                     <h6>${{ item.item_price }}</h6>
-                    <h6>{{ item.user_name }}</h6>
+                    {#                    <h6>{{ item.user_name }}</h6>#}
                     <!-- nume, descriere,pret -->
 
                 </div>
@@ -26,6 +44,27 @@
             </div>
             </div>
         {% endfor %}
+<!-- Paginator -->
+{% if is_paginated %}
+  <div class="d-flex justify-content-center">
+    <div class="card">
+      <div class="card-body">
+        <ul class="pagination justify-content-center">
+          {% if page_obj.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">&lsaquo; previous</a></li>
+          {% endif %}
+          <li class="page-item active"><a class="page-link">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</a></li>
+          {% if page_obj.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">next &rsaquo;</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
 
 {% endblock %}
 

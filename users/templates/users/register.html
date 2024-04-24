@@ -15,8 +15,14 @@
                     <div class="card-body">
                         <form method="POST">
                             {% csrf_token %}
-                            {{ form }}
-                            <button type="submit">Sign Up</button>
+                            {% for field in form %}
+                                <div class="form-group">
+                                {{ field.name }}
+                                <br>
+                                {{ field }}
+                                </div>
+                            {% endfor %}
+                            <button class="btn btn-info text-white" type="submit">Sign Up</button>
                         </form>
 
                     </div>
