@@ -7,7 +7,6 @@ from .models import Item
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 
-
 # Create your views here.
 
 
@@ -32,13 +31,13 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 
 
 # search option below
-def get_queryset(self):
-    query = self.request.GET.get("item_name")
-    if query:
-        return Item.objects.filter(
-            item_name__icontains=query)
-    else:
-        return Item.objects.all()
+# def get_queryset(self):
+#     query = self.request.GET.get("item_name")
+#     if query:
+#         return Item.objects.filter(
+#             item_name__icontains=query)
+#     else:
+#         return Item.objects.all()
 
 
 # paginator below
@@ -48,6 +47,13 @@ class IndexClassView(ListView):
     context_object_name = 'item_list'
     paginate_by = 5
 
+    def get_queryset(self):
+        query = self.request.GET.get("item_name")
+        if query:
+            return Item.objects.filter(
+                item_name__icontains=query)
+        else:
+            return Item.objects.all()
 
 
 def item(request):
@@ -123,3 +129,6 @@ class DeleteItemView(DeleteView):
     model = Item
     template_name = 'food/item-delete.html'
     success_url = reverse_lazy('food:index')
+
+def checkout(request):
+    return render(request, 'food/checkout.html')

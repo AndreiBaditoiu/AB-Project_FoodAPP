@@ -16,4 +16,5 @@ urlpatterns = [
     path('update/<int:pk>/', views.UpdateItemView.as_view(), name='update_item'),
     # delete item page
     path('delete/<int:pk>/', views.DeleteItemView.as_view(), name='delete_item'),
+    path('checkout/', views.checkout, name='checkout'),
 ]

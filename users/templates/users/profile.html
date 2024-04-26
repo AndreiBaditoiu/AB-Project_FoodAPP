@@ -1,5 +1,13 @@
-<h1>{{ user.username }}</h1>
-<div class="card">
-    <img src="{{ user.profile.image.url }}" alt="" class="card-img-top img-fluid"
-         style="object-fit: cover; height: 150px; width: auto;">
-</div>
+{% extends 'food/base.html' %}
+
+{% block content %}
+
+
+        <h1>{{ user.username }}</h1>
+{#        <div class="card">#}
+            <img src="{{ user.profile.image.url }}" alt="" class="card-img-top img-fluid"
+                 style="object-fit: cover; height: 150px; width: 150px;">
+{#        </div>#}
+
+
+{% endblock %}
