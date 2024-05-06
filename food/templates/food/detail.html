@@ -1,24 +1,24 @@
 {% extends 'food/base.html' %}
 
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <!-- Încapsularea imaginii într-un div cu clasa 'card' -->
-            <div class="card">
-                <!-- Aplicarea stilurilor inline direct pe tag-ul <img> -->
-                <img src="{{ object.item_image }}" alt="" class="card-img-top img-fluid" style=" object-fit: cover; height: 300px; width: auto;">
+    <div class="container">
+            <div class="row">
+               <div class="col-md-6">
+                    <!-- Încapsularea imaginii într-un div cu clasa 'card' -->
+                    <div class="card">
+                        <!-- Aplicarea stilurilor inline direct pe tag-ul <img> -->
+                        <img src="{{ object.item_image }}" alt="" class="card-img-top img-fluid" style=" object-fit: cover; height: 300px; width: auto;">
 
-            </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h1>{{ object.item_name }}</h1>
+                    <h2>{{ object.item_desc }}</h2>
+                    <h3>${{ object.item_price }}</h3>
+        {#{#            <a href="{% url 'food:delete_item' object.id %}">Delete</a>#}
+               </div>
+          </div>
         </div>
-        <div class="col-md-6">
-            <h1>{{ object.item_name }}</h1>
-            <h2>{{ object.item_desc }}</h2>
-            <h3>${{ object.item_price }}</h3>
-{#            <a href="{% url 'food:delete_item' object.id %}">Delete</a>#}
-        </div>
-    </div>
-</div>
-{% endblock %}
+    {% endblock %}
 
-{# ^ sintaxa Django-Django Template Language ^#}
+{#{# ^ sintaxa Django-Django Template Language ^#}

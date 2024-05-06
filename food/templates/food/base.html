@@ -4,13 +4,19 @@
 <head>
     <link rel="stylesheet" href="{% static 'food/style.css' %}">
     {#    links CDN(Bootstrap) below#}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
             crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.js"
-            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
 
     <link rel="icon" type="image/x-icon" href="{% static 'favicon/Logo.ico' %}">
 
@@ -18,14 +24,19 @@
 </head>
 <body>
 <nav class="navbar navbar-dark bg-dark mb-2 ">
-    <a href="{% url 'food:index' %}" class="navbar-brand m-lg-1">FoodApp</a>
+    <a href="{% url 'index' %}" class="navbar-brand m-lg-1">FoodApp</a>
 
     <div class="navbar">
         <a class="navbar" href="#">
             <img src="{% static 'images/Logo.jpg' %}" width="30" alt="Logo">
         </a>
         <a class="nav-item nav-link text-light me-5 m" href="{% url 'food:create_item' %}">Add Item </a>
-        <a id="cart" class="nav-item nav-link text-light me-5" href="#">Cart(0)</a>
+        <button id="cart" type="button" class="btn btn-secondary text-light me-5 m" data-container="body"
+                data-toggle="popover" data-placement="bottom" data-html="true"
+                data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Cart(0)
+        </button>
+
+
         <a class="nav-item nav-link text-light me-5" href="{% url 'food:checkout' %}">Checkout</a>
         {% if user.is_authenticated %}
             <a class="nav-item nav-link text-light me-5" href="{% url 'logout' %}">Logout</a>
@@ -47,32 +58,76 @@
 {% block content %}
 {% endblock %}
 <script type="text/javascript">
-    console.log('This is working');
+    console.log("THis is working");
 
-    let cart;
     if (localStorage.getItem('cart') == null) {
-        cart = {};
+        var cart = {};
+
     } else {
         cart = JSON.parse(localStorage.getItem('cart'));
+
     }
 
     $(document).on('click', '.atc', function () {
-        console.log('The add to cart button is clicked');
-        let item_id = this.id.toString();
+        console.log("The add to cart button was clicked");
+        var item_id = this.id.toString();
         console.log(item_id);
 
+
         if (cart[item_id] !== undefined) {
-            cart[item_id] = cart[item_id] + 1;
+            quantity = cart[item_id][0] + 1;
+            cart[item_id][0] = quantity; // saving quantity inside the cart
+
+
         } else {
-            cart[item_id] = 1;
+            quantity = 1;
+            name = document.getElementById("nm" + item_id).innerHTML; // extracting the name
+            cart[item_id] = [quantity, name]; // saving quantity and product name inside the cart
         }
+        // saving items to cart+ showing the number of added items to cart
         console.log(cart);
         localStorage.setItem('cart', JSON.stringify(cart));
-        document.getElementById('cart').innerHTML = 'Cart(' + Object.keys(cart).length.toString() +')';
-
+        document.getElementById("cart").innerHTML = "Cart(" + Object.keys(cart).length + ")";
 
     });
 
+    {#DisplayCart(cart);#}
+    {##}
+    {#function DisplayCart(cart) {#}
+    {#    var cartString = "";#}
+    {#    cartString += "<h5>This is your cart</h5>";#}
+    {#    var cartIndex = 1;#}
+    {#    for (var x in cart) {#}
+    {#        cartString += cartIndex;#}
+    {#        cartString += document.getElementById("nm" + x).innerHTML + "Qty:" + cart[x][0] + "</br>";#}
+    {#        cartIndex += 1;#}
+    {#    }#}
+    {#    cartString += "<a href='food/checkout'><button class='btn btn-warning' id='checkout'>Checkout</button></a>";#}
+    {#    document.getElementById("cart").setAttribute('data-content', cartString);#}
+    {#    $('[data-toggle="popover"]').popover();#}
+
+
+    DisplayCart(cart);
+
+    function DisplayCart(cart) {
+        var cartString = "";
+        cartString += "<h5>This is your cart</h5>";
+        var cartIndex = 1;
+
+        let cartObject = JSON.parse(localStorage.getItem('cart'))
+
+        for (item in cartObject) {
+            console.log(cartObject[item][0])
+            console.log(cartObject[item][1])
+            cartString += cartObject[item][1] + " QTY:" + Math.abs(cartObject[item][0]) + "</br>";
+
+
+        }
+        cartString += "<a href='food/checkout'><button class='btn btn-warning' id='checkout'>Checkout</button></a>";
+        document.getElementById("cart").setAttribute('data-content', cartString);
+        $('[data-toggle="popover"]').popover();
+
+    }
 
 </script>
 </body>

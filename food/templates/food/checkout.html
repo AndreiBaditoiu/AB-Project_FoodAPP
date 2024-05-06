@@ -3,32 +3,29 @@
 {% block content %}
 
     <div class="container">
-        <div class="col-md-3">
+        <div class="col-md-12">
             <div class="row">
-                <ol class="list-group list-group-numbered">
-                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                        <div class="ms-2 me-auto">
-                            <div class="fw-bold">Subheading</div>
-                            Content for list item
-                        </div>
-                        <span class="badge text-bg-primary rounded-pill">14</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                        <div class="ms-2 me-auto">
-                            <div class="fw-bold">Subheading</div>
-                            Content for list item
-                        </div>
-                        <span class="badge text-bg-primary rounded-pill">14</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                        <div class="ms-2 me-auto">
-                            <div class="fw-bold">Subheading</div>
-                            Content for list item
-                        </div>
-                        <span class="badge text-bg-primary rounded-pill">14</span>
-                    </li>
-                </ol>
+                <ul class="list-group" id = "item_list">
+
+                </ul>
             </div>
         </div>
     </div>
+{#{% endblock %}#}
+<script type="text/javascript">
+    if (localStorage.getItem('cart') == null) {  // check if local storage is empty
+        var cart = {};
+    } else {
+        cart = JSON.parse(localStorage.getItem('cart'));
+
+    }
+    for (item in cart){
+        let name = cart[item][1]; //extracting the name (name at index '1')
+        let quantity = cart[item][0]; // extracting the quantity/based on item index
+
+        itemString = `<li class= "list-group-item">${name}-${quantity}</li>` // creating a list group
+         $('#item_list').append(itemString);
+    }
+
+</script>
 {% endblock %}

@@ -1,10 +1,10 @@
-from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.shortcuts import render
 from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from .forms import ItemForm
 from .models import Item
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 
 # Create your views here.
@@ -129,6 +129,7 @@ class DeleteItemView(DeleteView):
     model = Item
     template_name = 'food/item-delete.html'
     success_url = reverse_lazy('food:index')
+
 
 def checkout(request):
     return render(request, 'food/checkout.html')
