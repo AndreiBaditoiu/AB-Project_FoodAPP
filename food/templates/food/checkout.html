@@ -3,29 +3,74 @@
 {% block content %}
 
     <div class="container">
-        <div class="col-md-12">
-            <div class="row">
-                <ul class="list-group" id = "item_list">
+        <div class="row">
+            <div class="col-md-12">
+
+                <ul class="list-group" id="item_list">
 
                 </ul>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <form method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" id="items" name="items">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="name">Name</label>
+                            <input id="name" name="name" type="text" class="form-control" placeholder="Name">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="email">Email</label>
+                            <input id="email" name="email" type="text" class="form-control" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input id="address" name="address" type="text" class="form-control" placeholder="Address">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="city">City</label>
+                            <input id="city" name="city" type="text" class="form-control">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="state">State</label>
+                            <input id="state" name="state" type="text" class="form-control">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="zipcode">Zip</label>
+                            <input id="zipcode" name="zipcode" type="text" class="form-control">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Place order</button>
+                </form>
+
+
+            </div>
+        </div>
     </div>
-{#{% endblock %}#}
-<script type="text/javascript">
-    if (localStorage.getItem('cart') == null) {  // check if local storage is empty
-        var cart = {};
-    } else {
-        cart = JSON.parse(localStorage.getItem('cart'));
+    {#{% endblock %}#}
+    <script type="text/javascript">
+        if (localStorage.getItem('cart') == null) {  // check if local storage is empty
+            var cart = {};
+        } else {
+            cart = JSON.parse(localStorage.getItem('cart'));
 
-    }
-    for (item in cart){
-        let name = cart[item][1]; //extracting the name (name at index '1')
-        let quantity = cart[item][0]; // extracting the quantity/based on item index
+        }
+        for (item in cart) {
+            let name = cart[item][1]; //extracting the name (name at index '1')
+            let quantity = cart[item][0]; // extracting the quantity/based on item index
+            let price = cart[item][2];
 
-        itemString = `<li class= "list-group-item">${name}-${quantity}</li>` // creating a list group
-         $('#item_list').append(itemString);
-    }
+            itemString = `<li class= "list-group-item">${name}-${quantity}</li>` // creating a list group
+            $('#item_list').append(itemString);
+        }
+        $('#items').val(JSON.stringify(cart));  // displaying items in order itself
 
-</script>
+    </script>
 {% endblock %}

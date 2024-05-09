@@ -1,10 +1,9 @@
 from PIL import Image
 
 
+img=Image.open("Logo.webp")
 
-# img=Image.open("Logo.webp")
-#
-# img.save("Logo.jpg", "JPEG")
+img.save("Logo.jpg", "JPEG")
 
 
 def convert_jpeg_to_ico(source_path, target_path, sizes=None):

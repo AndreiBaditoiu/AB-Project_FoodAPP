@@ -33,4 +33,4 @@ def logout_view(request):
 @login_required
 def profile_page(request):
     return render(request, 'users/profile.html')
-# @login_required= decorator makes sure user is logged in in order to see info frpm page.
+# @login_required= decorator makes sure user is logged in in order to see info from page.

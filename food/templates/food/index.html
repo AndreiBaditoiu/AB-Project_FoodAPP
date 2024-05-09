@@ -30,12 +30,14 @@
                     <img class="card-img-top" src="{{ item.item_image }}" alt="" style="width: 150px; height: auto">
                 </div>
                 <div id="nm{{ item.id }}" class="col-md-4">
+                    <div id = "price{{ item.id }}" class =card-text> <!--displaying price of product-->
                     <h2>{{ item.item_name }}</h2>
                     <h4>{{ item.item_desc }}</h4>
                     <h6>${{ item.item_price }}</h6>
                     {#                    <h6>{{ item.user_name }}</h6>#}
                     <!-- nume, descriere,pret -->
                     <!-- detail button below -->
+                        </div>
                 </div>
                 <div class="col-md-2">
                     <a href="{% url 'food:detail' item.id %}" class="btn btn-success">Details</a>

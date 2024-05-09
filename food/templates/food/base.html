@@ -77,12 +77,14 @@
         if (cart[item_id] !== undefined) {
             quantity = cart[item_id][0] + 1;
             cart[item_id][0] = quantity; // saving quantity inside the cart
+            cart[item_id][2] = cart[item_id][2] + parseFloat(document.getElementById("price" + item_id).innerHTML); //getting the price of items in cart and update if one product is added multiple times
 
 
         } else {
             quantity = 1;
+            price = parseFloat(document.getElementById("price" + item_id).innerHTML); // adding a specific product for the first time
             name = document.getElementById("nm" + item_id).innerHTML; // extracting the name
-            cart[item_id] = [quantity, name]; // saving quantity and product name inside the cart
+            cart[item_id] = [quantity, name, price]; // saving quantity and product name inside the cart
         }
         // saving items to cart+ showing the number of added items to cart
         console.log(cart);
@@ -90,21 +92,6 @@
         document.getElementById("cart").innerHTML = "Cart(" + Object.keys(cart).length + ")";
 
     });
-
-    {#DisplayCart(cart);#}
-    {##}
-    {#function DisplayCart(cart) {#}
-    {#    var cartString = "";#}
-    {#    cartString += "<h5>This is your cart</h5>";#}
-    {#    var cartIndex = 1;#}
-    {#    for (var x in cart) {#}
-    {#        cartString += cartIndex;#}
-    {#        cartString += document.getElementById("nm" + x).innerHTML + "Qty:" + cart[x][0] + "</br>";#}
-    {#        cartIndex += 1;#}
-    {#    }#}
-    {#    cartString += "<a href='food/checkout'><button class='btn btn-warning' id='checkout'>Checkout</button></a>";#}
-    {#    document.getElementById("cart").setAttribute('data-content', cartString);#}
-    {#    $('[data-toggle="popover"]').popover();#}
 
 
     DisplayCart(cart);
@@ -119,7 +106,7 @@
         for (item in cartObject) {
             console.log(cartObject[item][0])
             console.log(cartObject[item][1])
-            cartString += cartObject[item][1] + " QTY:" + Math.abs(cartObject[item][0]) + "</br>";
+            cartString += cartObject[item][1] + " QTY:" + (cartObject[item][0]) + "</br>";
 
 
         }
