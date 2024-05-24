@@ -30,14 +30,12 @@
                     <img class="card-img-top" src="{{ item.item_image }}" alt="" style="width: 150px; height: auto">
                 </div>
                 <div id="nm{{ item.id }}" class="col-md-4">
-                    <div id = "price{{ item.id }}" class =card-text> <!--displaying price of product-->
-                    <h2>{{ item.item_name }}</h2>
-                    <h4>{{ item.item_desc }}</h4>
-                    <h6>${{ item.item_price }}</h6>
-                    {#                    <h6>{{ item.user_name }}</h6>#}
-                    <!-- nume, descriere,pret -->
-                    <!-- detail button below -->
-                        </div>
+                    <div id="price{{ item.id }}" class=card-text> <!--displaying price of product-->
+                        <h2>{{ item.item_name }}</h2>
+                        <h4>{{ item.item_desc }}</h4>
+                        <h6><span class="badge badge-warning badge-pill">{{ item.item_price }}</span></h6>
+
+                    </div>
                 </div>
                 <div class="col-md-2">
                     <a href="{% url 'food:detail' item.id %}" class="btn btn-success">Details</a>
@@ -49,54 +47,54 @@
         {% endfor %}
     <!-- Paginator -->
     {% if is_paginated %}
-    <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-            {% if page_obj.has_previous %}
-                <li class="page-item">
-                    <a class="page-link" href="?page=1" tabindex="-1">First</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
-                </li>
-            {% else %}
-                <li class="page-item disabled">
-                    <span class="page-link">First</span>
-                </li>
-                <li class="page-item disabled">
-                    <span class="page-link">Previous</span>
-                </li>
-            {% endif %}
-
-            {% for i in paginator.page_range %}
-                {% if page_obj.number == i %}
-                    <li class="page-item active">
-                        <span class="page-link">{{ i }}</span>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page=1" tabindex="-1">First</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
                     </li>
                 {% else %}
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                    <li class="page-item disabled">
+                        <span class="page-link">First</span>
+                    </li>
+                    <li class="page-item disabled">
+                        <span class="page-link">Previous</span>
                     </li>
                 {% endif %}
-            {% endfor %}
 
-            {% if page_obj.has_next %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ paginator.num_pages }}">Last</a>
-                </li>
-            {% else %}
-                <li class="page-item disabled">
-                    <span class="page-link">Next</span>
-                </li>
-                <li class="page-item disabled">
-                    <span class="page-link">Last</span>
-                </li>
-            {% endif %}
-        </ul>
-    </nav>
-{% endif %}
+                {% for i in paginator.page_range %}
+                    {% if page_obj.number == i %}
+                        <li class="page-item active">
+                            <span class="page-link">{{ i }}</span>
+                        </li>
+                    {% else %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ paginator.num_pages }}">Last</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <span class="page-link">Next</span>
+                    </li>
+                    <li class="page-item disabled">
+                        <span class="page-link">Last</span>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
 
 
 
